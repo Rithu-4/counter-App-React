@@ -1,17 +1,40 @@
-import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {useState } from 'react';
+import './style.css';
+
+function Counter(){
+  var [count, setCount] = useState(0);
+  
+  function increment(){
+    setCount(count + 1);
+  }
+  function decrement(){
+    setCount(count - 1);
+  }
+  function reset(){
+    setCount(0);
+  }
+  return(
+    
+    <div className="container">
+      <h1 className="count">{count}</h1>
+    
+      {/* Conditional Rendering */}
+      {count === 0 && <p className="message">Minimum limit reached</p>}
+      <div className="buttons">
+        <button onClick={increment}>Increment</button>
+        <button onClick={decrement}>Decrement</button>
+        <button onClick={reset}>Reset</button>
+      </div>
+      
+    </div>
+
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Counter />
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
